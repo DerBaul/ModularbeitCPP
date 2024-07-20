@@ -12,22 +12,22 @@ private:
     int sensorType;
     std::string sensorAdresse;
     int sequenceNumber;
-    std::vector<double> values;
+    std::vector<float> values;
 
 public:
-    Measurement(long long messungszeit, int sensorType, const std::string& sensorAdresse, int sequenceNumber, const std::vector<double>& values);
+    Measurement(long long messungszeit, int sensorType, const std::string& sensorAdresse, int sequenceNumber, const std::vector<float>& values);
 
-    long long getMesszeit() const;
+    long long getMesszeit();
 
-    int getSensorType() const;
+    int getSensorType();
 
-    std::string getSensorAdresse() const;
+    std::string getSensorAdresse();
 
-    int getSequenceNumber() const;
+    int getSequenceNumber();
 
-    std::vector<double> getValues() const;
+    std::vector<float> getValues();
 
-    std::string toString() const;
+    std::string toString();
 
 };
 

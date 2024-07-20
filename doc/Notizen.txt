@@ -1,0 +1,57 @@
+Ausschnitt meiner Notitzen.
+Gern mit einem Markdown fähigen Viewer anschauen.
+
+
+##Ordnerstrucktur:
+modularbeit/
+├── include/
+│   └── Hier sind die Header (.h) drin. Beschreibt was eine Class tut, aber nicht wie sie es tut.
+│
+├── src/
+│   └── die Implementierungen meiner Klassen
+│
+├── doc/
+│   └── Documentation
+├── main.cpp
+├── CMakeLists.txt (Wird von CLion erstellt)
+├── cmake-build-debug/
+    └── von CMake erstellte Dateien.
+
+
+##Code und Erkenntnisse:
+Erkenntnisse sind Codestellen die für mich herausstechen und ich sie mir nochmal extra merken möchte.
+Entweder weil ähnlicher Code online (Stack Overflow, ChatCPT, usw.) als *best Practice* angesehen wird,
+oder weil es Standard Codeblöcke sind die ich öfter verwende und deshalb dokumentiere.
+
+##### sensor.h:
+Hat diese Zeile als init Funktion: (zwei variablen sind aus dem Beispiel gelöscht.)
+```C++
+Sensor(const std::string& beschreibung, const std::string& adresse);
+```
+**const:** Sorgt dafür das die Variablen in der Funktion nicht mehr veränderbar sind.
+**Referenz:** Übergibt man mit string wird jedes mal eine Kopie erstellt. Mit string& wird nur der Pointer übergeben. Ist effizienter und hat den Vorteil das man den String, wenn nötig, nur an einer Stelle ändern muss.
+https://stackoverflow.com/questions/22146094/why-should-i-use-a-pointer-rather-than-the-object-itself
+
+```C++
+virtual std::shared_ptr<const Measurement> getMessdaten() const = 0;
+```
+**virtual:** markiert das die Funktion in den Unterklassen überschreiben werden kann:
+**shared_ptr:** Smartpointer der den Speicher selbst wieder frei gibt.
+**() const:** Die Funktion ändert keine Daten in der Klasse.
+**=0:** markiert das die Funktion keine Implementierung hat und in jeder Unterklasse extra implementiert werden muss.
+
+```C++
+virtual bool doMessung() override;
+```
+**override:** markiert das hier eine Funktion der Basisklasse überschrieben wird.
+
+##### randomSensor.cpp:
+```C++
+std::random_device dev;
+std::mt19937 rng(dev());
+std::uniform_int_distribution<std::mt19937::result_type> dist6(1,6); //distribution in range [1, 6]
+std::cout << dist6(rng) << std::endl;
+```
+**random_device:** ist eine Klasse in der Standard-bib. Gibt zufällige Zahlen aus.
+**mt19937:** Ist ein Pseudo Zufallszahlen Generator
+**uniform_int_distribution<std::mt19937::result_type>:** sorgt für eine gleichmäßige Verteilung
