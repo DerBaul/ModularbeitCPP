@@ -1,0 +1,8 @@
+//
+// Created by Paul Zintl on 07.07.24.
+//
+
+#ifndef MODULARBEIT_FILEWRITER_H
+#define MODULARBEIT_FILEWRITER_H
+
+#endif //MODULARBEIT_FILEWRITER_H
